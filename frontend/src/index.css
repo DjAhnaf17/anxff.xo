@@ -1,0 +1,159 @@
+:root {
+  --primary-bg: #0a183d; /* Midnight Navy */
+  --nav-bg: #0a183d;
+  --accent-coral: #FF7F50; /* Vibrant Coral */
+  --text-white: #ffffff;
+  --text-gray: #b0c4de; /* Light steel blue for subtle text */
+  --border-color: rgba(255, 255, 255, 0.08);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--primary-bg) !important;
+  color: var(--text-white);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-white);
+}
+
+p {
+  color: var(--text-white) !important;
+  letter-spacing: 0.02em;
+  line-height: 1.7;
+}
+
+.text-gray {
+  color: var(--text-gray) !important;
+}
+
+.text-coral {
+  color: var(--accent-coral) !important;
+}
+
+/* Navbar specific styling */
+.nav-link {
+  color: var(--text-white);
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.nav-link:hover {
+  color: var(--accent-coral) !important;
+  text-shadow: 0 0 10px rgba(255, 127, 80, 0.5);
+}
+
+/* IT Technosys Pill Button */
+.btn-pill-white {
+  background-color: #ffffff;
+  color: #0a183d !important;
+  font-weight: 800;
+  padding: 0.9rem 2.5rem;
+  border-radius: 50px; /* Pill shape */
+  border: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-pill-white:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(255, 127, 80, 0.3);
+  background-color: var(--accent-coral);
+  color: #ffffff !important;
+}
+
+/* Glassmorphism tuned to Navy */
+.glassmorphism {
+  background: rgba(16, 32, 70, 0.6); /* Navy tinted glass */
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  transition: all 0.3s ease;
+}
+
+.glassmorphism:hover {
+  border-color: rgba(255, 127, 80, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Spotlight Effect on Hover */
+.glassmorphism-spotlight {
+  position: relative;
+  overflow: hidden;
+}
+.glassmorphism-spotlight::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(600px circle at var(--mouseX, -100px) var(--mouseY, -100px), rgba(255, 127, 80, 0.15), transparent 40%);
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+.glassmorphism-spotlight:hover::before {
+  opacity: 1;
+}
+.glassmorphism-spotlight > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--primary-bg); }
+::-webkit-scrollbar-thumb { 
+  background: rgba(255, 127, 80, 0.5); 
+  border-radius: 5px; 
+}
+::-webkit-scrollbar-thumb:hover { background: var(--accent-coral); }
+
+/* Custom Cursor */
+@media (min-width: 769px) {
+  body, a, button, input, textarea, select {
+    cursor: none !important;
+  }
+}
+
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-coral);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+
+.custom-cursor-outline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(255, 127, 80, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+}
