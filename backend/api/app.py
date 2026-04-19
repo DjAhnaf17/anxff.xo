@@ -40,16 +40,24 @@ def get_projects():
         {
             "id": 1,
             "title": "Med-Predict — ML-Powered Disease Detection System",
-            "description": "Built a multi-disease prediction system (Diabetes, Heart Disease, Parkinson's) achieving 85–92% accuracy. Deployed a Streamlit web interface with auto-generated PDF prescriptions.",
-            "technologies": ["Python", "Scikit-learn", "Streamlit", "Pandas", "NumPy"],
-            "url": "https://github.com/jawwadahnaf/med-predict"
+            "description": "An intelligent healthcare support application designed to assist in early disease detection using machine learning. It features a responsive UI and automatically generates medical PDF reports.",
+            "technologies": ["Python", "Streamlit", "Machine Learning", "Scikit-learn"],
+            "url": "https://github.com/DjAhnaf17/Med-Predict"
         },
         {
             "id": 2,
-            "title": "Smart-Presence — Flask-Based Attendance Management",
-            "description": "Architected a full-stack Flask web application for real-time attendance tracking with separate secure portals and automated WhatsApp absence notifications via REST API.",
-            "technologies": ["Python", "Flask", "SQLite", "HTML/CSS", "JavaScript"],
-            "url": "https://github.com/jawwadahnaf/smart-presence"
+            "title": "PlotPlus — ML Property Price Predictor",
+            "description": "A full-stack web application built using Flask, Machine Learning, and PostgreSQL, designed to predict property prices based on area, number of rooms, and location.",
+            "technologies": ["Python", "Flask", "PostgreSQL", "Machine Learning", "HTML/CSS/JS"],
+            "url": "https://github.com/DjAhnaf17/PlotPlus",
+            "liveUrl": "https://plotplus.onrender.com/"
+        },
+        {
+            "id": 3,
+            "title": "Royal Suppliers Web Platform",
+            "description": "A modern, responsive web application built for Royal Suppliers to manage operations and provide an excellent user experience.",
+            "technologies": ["React", "TypeScript", "Node.js", "TailwindCSS"],
+            "url": "https://github.com/DjAhnaf17/RoyalSuppliersNewWeb"
         }
     ]
     return jsonify(projects)

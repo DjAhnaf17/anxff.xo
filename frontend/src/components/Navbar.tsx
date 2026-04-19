@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaLinkedin, FaGithub, FaWhatsapp, FaBars, FaTimes } from "react-icons/fa";
 import Magnetic from "./Magnetic";
+interface NavbarProps {
+  openResume: () => void;
+}
 
-const Navbar = () => {
+const Navbar = ({ openResume }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // Close menu on resize to desktop
@@ -29,8 +32,8 @@ const Navbar = () => {
 
   const socialLinks = (
     <div className="d-flex gap-3 mt-3 mt-lg-0 ms-lg-4 justify-content-center">
-      <Magnetic><a href="https://linkedin.com/in/jawwadahnaf" target="_blank" rel="noreferrer" className="text-white fs-5 transition hover-gradient d-inline-block p-1"><FaLinkedin /></a></Magnetic>
-      <Magnetic><a href="https://github.com/jawwadahnaf" target="_blank" rel="noreferrer" className="text-white fs-5 transition hover-gradient d-inline-block p-1"><FaGithub /></a></Magnetic>
+      <Magnetic><a href="https://www.linkedin.com/in/jawwad-ahnaf-998727387" target="_blank" rel="noreferrer" className="text-white fs-5 transition hover-gradient d-inline-block p-1"><FaLinkedin /></a></Magnetic>
+      <Magnetic><a href="https://github.com/DjAhnaf17/" target="_blank" rel="noreferrer" className="text-white fs-5 transition hover-gradient d-inline-block p-1"><FaGithub /></a></Magnetic>
       <Magnetic><a href="https://wa.me/918870073991" target="_blank" rel="noreferrer" className="text-white fs-5 transition hover-gradient d-inline-block p-1"><FaWhatsapp /></a></Magnetic>
     </div>
   );
@@ -62,6 +65,9 @@ const Navbar = () => {
                 <a className="nav-link" href={link.href}>{link.name}</a>
               </li>
             ))}
+            <li className="nav-item">
+              <button onClick={openResume} className="btn nav-link p-0 text-coral">Resume</button>
+            </li>
             <li className="nav-item">
               {socialLinks}
             </li>

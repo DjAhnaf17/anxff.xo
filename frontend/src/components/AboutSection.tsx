@@ -1,13 +1,8 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaWhatsapp, FaEnvelope, FaPhone } from "react-icons/fa";
+import SkillsOrbit from "./SkillsOrbit";
 
 const AboutSection = () => {
-  const skills = [
-    "Python", "SQL", "C++", "Java", "JavaScript", 
-    "Machine Learning", "Data Science", "Pandas", "Scikit-learn",
-    "Flask", "Streamlit", "Power BI", "AWS"
-  ];
-
   return (
     <section id="about" className="py-5">
       <div className="container py-5">
@@ -25,12 +20,8 @@ const AboutSection = () => {
             </p>
             
             <h4 className="fw-bold mb-3 mt-4 text-info">Technical Skills</h4>
-            <div className="d-flex flex-wrap gap-2 mb-5">
-              {skills.map((skill, index) => (
-                <span key={index} className="badge bg-secondary opacity-75 fs-6 py-2 px-3 hover-gradient transition">
-                  {skill}
-                </span>
-              ))}
+            <div className="mb-5" style={{ height: "400px", position: "relative" }}>
+              <SkillsOrbit />
             </div>
 
             <div className="d-flex flex-wrap gap-3">
@@ -46,10 +37,10 @@ const AboutSection = () => {
             <div className="glassmorphism p-4 text-center">
               <h3 className="h4 mb-4">Let's Connect</h3>
               <div className="d-flex justify-content-center gap-4">
-                <a href="https://github.com/jawwadahnaf" target="_blank" rel="noreferrer" className="text-light fs-1 hover-gradient transition">
+                <a href="https://github.com/DjAhnaf17/" target="_blank" rel="noreferrer" className="text-light fs-1 hover-gradient transition">
                   <FaGithub />
                 </a>
-                <a href="https://linkedin.com/in/jawwadahnaf" target="_blank" rel="noreferrer" className="text-light fs-1 hover-gradient transition">
+                <a href="https://www.linkedin.com/in/jawwad-ahnaf-998727387" target="_blank" rel="noreferrer" className="text-light fs-1 hover-gradient transition">
                   <FaLinkedin />
                 </a>
                 <a href="https://wa.me/918870073991" target="_blank" rel="noreferrer" className="text-light fs-1 hover-gradient transition">

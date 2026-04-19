@@ -1,11 +1,15 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { FaChevronRight } from "react-icons/fa";
 import Magnetic from "./Magnetic";
 
-const HeroSection = () => {
+interface HeroProps {
+  openResume: () => void;
+}
+
+const HeroSection = ({ openResume }: HeroProps) => {
   const particlesInit = useCallback(async (engine: any) => {
     await loadFull(engine);
   }, []);
@@ -42,7 +46,7 @@ const HeroSection = () => {
   
   const wordAnim = {
     hidden: { y: 50, opacity: 0, rotateX: -30 },
-    show: { y: 0, opacity: 1, rotateX: 0, transition: { type: "spring", stiffness: 200, damping: 20 } }
+    show: { y: 0, opacity: 1, rotateX: 0, transition: { type: "spring" as const, stiffness: 200, damping: 20 } }
   };
 
   return (
@@ -134,6 +138,11 @@ const HeroSection = () => {
                     View Projects
                   </button>
                 </a>
+              </Magnetic>
+              <Magnetic>
+                <button onClick={openResume} className="btn-pill-white border-0 text-coral" style={{ background: "transparent", position: "relative", zIndex: 10 }}>
+                  View Resume
+                </button>
               </Magnetic>
             </div>
           </div>
