@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { FaLinkedin, FaGithub, FaWhatsapp, FaArrowUp, FaHeart } from "react-icons/fa";
 import Magnetic from "./Magnetic";
 
@@ -24,8 +23,8 @@ const Footer = () => {
         <div className="row align-items-center justify-content-between mb-5">
           {/* Brand & Logo */}
           <div className="col-12 col-md-5 text-center text-md-start mb-4 mb-md-0">
-            <h2 className="fw-bold mb-1" style={{ fontFamily: "Outfit", letterSpacing: "1px", color: "white" }}>
-              JAWWAD <span className="text-info">AHNAF</span>
+            <h2 className="fw-bold mb-1 text-white" style={{ fontFamily: "Outfit", letterSpacing: "1px" }}>
+              anxff.<span className="text-neon">xo</span>
             </h2>
             <p className="text-muted mb-0 opacity-75">Architecting Intelligent Web Solutions.</p>
           </div>
@@ -36,7 +35,7 @@ const Footer = () => {
               <button 
                 onClick={scrollToTop}
                 className="btn border-0 shadow-lg d-inline-flex justify-content-center align-items-center"
-                style={{ width: "60px", height: "60px", borderRadius: "50%", backgroundColor: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "var(--accent-coral)" }}
+                style={{ width: "60px", height: "60px", borderRadius: "50%", backgroundColor: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "var(--accent-neon)" }}
                 aria-label="Scroll to top"
               >
                 <FaArrowUp size={20} />
@@ -68,10 +67,10 @@ const Footer = () => {
         <div className="row mt-4 pt-4 border-top border-secondary border-opacity-25">
           <div className="col-12 d-flex flex-column flex-md-row justify-content-between align-items-center">
             <p className="text-muted small mb-2 mb-md-0 fw-light">
-              &copy; {new Date().getFullYear()} Jawwad Ahnaf. All rights reserved.
+              &copy; {new Date().getFullYear()} anxff.xo. All rights reserved.
             </p>
             <p className="text-muted small mb-0 d-flex align-items-center gap-1 fw-light">
-              Crafted with <FaHeart className="text-coral mx-1" size={12} /> in React & Framer Motion
+              Crafted with <FaHeart className="text-neon mx-1" size={12} /> in React & Framer Motion
             </p>
           </div>
         </div>

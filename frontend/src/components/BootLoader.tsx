@@ -11,7 +11,7 @@ const ScrambleText = ({ text }: { text: string }) => {
     let interval: ReturnType<typeof setInterval>;
     
     interval = setInterval(() => {
-      setDisplayText(text.split("").map((letter, index) => {
+      setDisplayText(text.split("").map((_, index) => {
         if(index < iteration) {
           return text[index];
         }
@@ -67,7 +67,7 @@ export default function BootLoader({ onComplete }: BootLoaderProps) {
         await new Promise(r => setTimeout(r, Math.random() * 200 + 400));
       }
       if (isActive) {
-        setTimeout(onComplete, 800);
+        timeout = setTimeout(onComplete, 800);
       }
     };
     
@@ -90,7 +90,7 @@ export default function BootLoader({ onComplete }: BootLoaderProps) {
       }}
     >
       <h2 className="mb-4 fw-bold" style={{ color: "#0f0", textShadow: "0 0 5px #0f0" }}>
-        <ScrambleText text="WELCOME TO AHNAF PORTFOLIO" /> 
+        <ScrambleText text="WELCOME TO anxff.xo" /> 
         <span className="opacity-50 fs-6 ms-3">_INITIALIZING_</span>
       </h2>
       {logs.map((log, i) => (

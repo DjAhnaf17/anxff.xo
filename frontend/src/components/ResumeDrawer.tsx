@@ -24,7 +24,7 @@ export default function ResumeDrawer({ isOpen, onClose }: Props) {
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            transition={{ type: "spring" as const, damping: 25, stiffness: 200 }}
             className="position-fixed top-0 end-0 h-100 glassmorphism p-4 d-flex flex-column"
             style={{ width: "min(500px, 100vw)", zIndex: 10051, borderRadius: "20px 0 0 20px" }}
           >

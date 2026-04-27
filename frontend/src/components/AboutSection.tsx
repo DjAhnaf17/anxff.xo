@@ -37,13 +37,13 @@ const AboutSection = () => {
             <div className="glassmorphism p-4 text-center">
               <h3 className="h4 mb-4">Let's Connect</h3>
               <div className="d-flex justify-content-center gap-4">
-                <a href="https://github.com/DjAhnaf17/" target="_blank" rel="noreferrer" className="text-light fs-1 hover-gradient transition">
+                <a href="https://github.com/DjAhnaf17/" target="_blank" rel="noreferrer" className="text-adaptive fs-1 hover-gradient transition">
                   <FaGithub />
                 </a>
-                <a href="https://www.linkedin.com/in/jawwad-ahnaf-998727387" target="_blank" rel="noreferrer" className="text-light fs-1 hover-gradient transition">
+                <a href="https://www.linkedin.com/in/jawwad-ahnaf-998727387" target="_blank" rel="noreferrer" className="text-adaptive fs-1 hover-gradient transition">
                   <FaLinkedin />
                 </a>
-                <a href="https://wa.me/918870073991" target="_blank" rel="noreferrer" className="text-light fs-1 hover-gradient transition">
+                <a href="https://wa.me/918870073991" target="_blank" rel="noreferrer" className="text-adaptive fs-1 hover-gradient transition">
                   <FaWhatsapp />
                 </a>
               </div>

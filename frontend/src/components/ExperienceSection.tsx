@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+
+import { motion } from "framer-motion";
 
 const experiences = [
   {
@@ -36,77 +36,47 @@ const experiences = [
   }
 ];
 
-const StickyCard = ({ exp, index, totalCards }: { exp: any; index: number, totalCards: number }) => {
-  // We use direct sticky positioning without artificial wrapper heights!
-  const stickyTop = `calc(15vh + ${index * 30}px)`;
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    e.currentTarget.style.setProperty("--mouseX", `${x}px`);
-    e.currentTarget.style.setProperty("--mouseY", `${y}px`);
-  };
+const TimelineItem = ({ exp, index }: { exp: any; index: number }) => {
+  const isEven = index % 2 === 0;
 
   return (
-    // The margin-bottom here defines the EXACT scroll distance before the next card arrives!
-    <div 
-      className="w-100 d-flex justify-content-center experience-card-wrapper"
-      style={{ 
-        position: "sticky",
-        top: stickyTop,
-        zIndex: index,
-        marginBottom: index === totalCards - 1 ? "0" : "25vh"
-      }}
-    >
+    <div className={`row w-100 mb-5 position-relative align-items-center justify-content-${isEven ? 'start' : 'end'} mx-0`}>
+      {/* Center Line Marker */}
+      <div className="position-absolute start-50 translate-middle-x rounded-circle d-none d-md-block" style={{ width: '20px', height: '20px', zIndex: 2, backgroundColor: 'var(--accent-neon)', border: '4px solid var(--primary-bg)' }} />
+
       <motion.div 
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
-        className="w-100"
+        transition={{ duration: 0.6, type: "spring" as const, stiffness: 100 }}
+        className={`col-12 col-md-5 ${isEven ? 'text-md-end pe-md-5' : 'text-md-start ps-md-5'}`}
       >
-        <div 
-          className="glassmorphism glassmorphism-spotlight max-w-4xl mx-auto p-4 p-md-5 d-flex flex-column flex-md-row gap-4 align-items-center align-items-md-start"
-          onMouseMove={handleMouseMove}
-          style={{ 
-            borderRadius: "24px", 
-            border: "1px solid rgba(255,255,255,0.08)",
-            boxShadow: `0 -15px 40px rgba(0,0,0,0.6)`, // Aggressive dark shadow to separate stacked cards
-            maxWidth: "900px",
-            backgroundColor: "rgba(5, 10, 25, 0.85)" // Solidified background so cards don't bleed visually when stacked
-          }}
-        >
-          {/* Left Side: Logo Block */}
-          <div className="flex-shrink-0 bg-dark p-3 rounded-circle d-flex align-items-center justify-content-center shadow-lg border border-secondary border-opacity-50" style={{ width: "100px", height: "100px" }}>
-            {exp.logo ? (
-              <img src={exp.logo} alt={exp.company} className="w-100 h-100 object-fit-contain bg-white rounded-circle" />
-            ) : (
-              <span className="text-info fw-bold display-6">{exp.company.charAt(0)}</span>
-            )}
-          </div>
+        <div className="glassmorphism p-3 p-md-4 position-relative transition" style={{ borderRadius: '20px' }}>
+          {/* Arrow pointing to center */}
+          <div 
+            className="position-absolute top-50 translate-middle-y d-none d-md-block"
+            style={{
+              [isEven ? 'right' : 'left']: '-10px',
+              width: 0,
+              height: 0,
+              borderTop: '10px solid transparent',
+              borderBottom: '10px solid transparent',
+              [isEven ? 'borderLeft' : 'borderRight']: '10px solid var(--border-color)',
+            }}
+          />
 
-          {/* Right Side: Content Block */}
-          <div className="flex-grow-1 text-center text-md-start">
-            <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-2">
-              <h3 className="fw-bold text-white mb-1 display-6 fs-md-4" style={{ fontFamily: "Outfit" }}>{exp.title}</h3>
-              <span className="badge bg-transparent border border-coral text-coral align-self-center align-self-md-start mt-2 mt-md-0 px-3 py-2 rounded-pill shadow-sm" style={{ backdropFilter: "blur(5px)" }}>{exp.period}</span>
+          <h3 className="fw-bold mb-2" style={{ color: "var(--text-white)", fontFamily: "Outfit" }}>{exp.title}</h3>
+          <span className="badge bg-transparent border border-coral text-neon mb-3 px-3 py-2 rounded-pill shadow-sm">{exp.period}</span>
+          <h5 className="text-info opacity-75 mb-3">{exp.company}</h5>
+          <p className="text-muted mb-0" style={{ lineHeight: "1.7", color: "var(--text-gray)" }}>{exp.description}</p>
+          
+          {exp.grade && (
+            <div className={`mt-3 ${isEven ? 'text-md-end' : 'text-md-start'}`}>
+              <span className="badge bg-black bg-opacity-25 border border-info border-opacity-50 px-3 py-2 fs-6 rounded-pill" style={{ color: "var(--text-white)" }}>
+                Score: <span className="text-info ms-1 fw-bold">{exp.grade}</span>
+              </span>
             </div>
-            
-            <h5 className="text-info opacity-75 mb-3">{exp.company}</h5>
-            
-            <p className="text-muted fs-5 mt-3 mb-0" style={{ lineHeight: "1.7" }}>
-              {exp.description}
-            </p>
-
-            {exp.grade && (
-              <div className="mt-4 text-center text-md-start">
-                <span className="badge bg-black bg-opacity-25 border border-info border-opacity-50 text-light px-4 py-2 fs-6 rounded-pill">
-                  Score: <span className="text-info ms-1 fw-bold">{exp.grade}</span>
-                </span>
-              </div>
-            )}
-          </div>
+          )}
         </div>
       </motion.div>
     </div>
@@ -115,15 +85,13 @@ const StickyCard = ({ exp, index, totalCards }: { exp: any; index: number, total
 
 const ExperienceSection = () => {
   return (
-    <section id="experience" className="py-5 position-relative overflow-hidden bg-black bg-opacity-25">
+    <section id="experience" className="py-5 position-relative overflow-hidden" style={{ backgroundColor: "var(--primary-bg)" }}>
       <div className="container py-5">
-        
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, type: "spring" }}
+          transition={{ duration: 0.8, type: "spring" as const }}
           className="text-center mb-5 pb-5"
         >
           <h2 className="display-3 fw-bold mb-3" style={{ fontFamily: "Outfit" }}>
@@ -132,13 +100,14 @@ const ExperienceSection = () => {
           <p className="text-muted fs-5 max-w-2xl mx-auto">A chronical of my professional and academic journey.</p>
         </motion.div>
 
-        {/* Sticky Deck Wrapper */}
-        <div className="position-relative w-100 mt-5">
+        <div className="position-relative w-100 mt-5 mx-auto py-4" style={{ maxWidth: "1000px" }}>
+          {/* Central Line */}
+          <div className="position-absolute top-0 bottom-0 start-50 translate-middle-x d-none d-md-block" style={{ width: "4px", backgroundColor: "var(--border-color)", borderRadius: "2px" }} />
+          
           {experiences.map((exp, index) => (
-            <StickyCard key={index} exp={exp} index={index} totalCards={experiences.length} />
+            <TimelineItem key={index} exp={exp} index={index} />
           ))}
         </div>
-
       </div>
     </section>
   );

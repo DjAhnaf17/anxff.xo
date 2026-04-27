@@ -10,7 +10,7 @@ const Terminal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [history, setHistory] = useState<HistoryItem[]>([
-    { prompt: "", output: "Welcome to Jawwad_OS v2.0. Type 'help' to see available commands." }
+    { prompt: "", output: "Welcome to anxff_OS v2.0. Type 'help' to see available commands." }
   ]);
   const endRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -36,7 +36,7 @@ const Terminal = () => {
         output = "Available commands: whoami, skills, clear, sudo rm -rf /";
         break;
       case "whoami":
-        output = "Jawwad Ahnaf - Full-Stack Data Analyst & ML Developer blending logic and aesthetics.";
+        output = "anxff.xo - Full-Stack Data Analyst & ML Developer blending logic and aesthetics.";
         break;
       case "skills":
         output = "Python, SQL, C++, React, Flask, Framer Motion, Machine Learning pipelines, Power BI.";
@@ -88,7 +88,7 @@ const Terminal = () => {
             initial={{ opacity: 0, scale: 0.8, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 50 }}
-            transition={{ type: "spring", stiffness: 200, damping: 20 }}
+            transition={{ type: "spring" as const, stiffness: 200, damping: 20 }}
             style={{
               position: "fixed",
               bottom: "100px",

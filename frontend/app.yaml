@@ -1,0 +1,19 @@
+runtime: nodejs20
+env: standard
+service: default
+
+# Use simple static handlers to serve the Vite build output
+handlers:
+# Serve static assets (js, css, images) from the /assets directory
+- url: /assets
+  static_dir: dist/assets
+
+# Serve anything else (like index.html) directly out of the dist folder
+- url: /(.*\..+)$
+  static_files: dist/\1
+  upload: dist/(.*\..+)$
+
+# For any other route (React Router), serve index.html
+- url: /.*
+  static_files: dist/index.html
+  upload: dist/index.html

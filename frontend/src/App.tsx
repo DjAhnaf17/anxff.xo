@@ -14,10 +14,20 @@ import CustomCursor from './components/CustomCursor';
 import Terminal from './components/Terminal';
 import BootLoader from './components/BootLoader';
 import ResumeDrawer from './components/ResumeDrawer';
+import ChatWidget from './components/ChatWidget';
 
 function App() {
   const [isBooting, setIsBooting] = useState(true);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
+  const [theme, setTheme] = useState('dark');
+
+  useEffect(() => {
+    document.body.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
 
   // Global reading progress bar
   const { scrollYProgress } = useScroll();
@@ -40,7 +50,7 @@ function App() {
       {/* Global Scroll Bar */}
       <motion.div
         className="position-fixed top-0 start-0 z-3"
-        style={{ scaleX, height: "4px", backgroundColor: "var(--accent-coral)", transformOrigin: "0%", width: "100%" }}
+        style={{ scaleX, height: "4px", backgroundColor: "var(--accent-neon)", transformOrigin: "0%", width: "100%" }}
       />
 
       <AnimatePresence>
@@ -51,8 +61,9 @@ function App() {
         <div className="App min-vh-100 position-relative">
           <CustomCursor />
           <Terminal />
+          <ChatWidget />
           <ResumeDrawer isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
-          <Navbar openResume={() => setIsResumeOpen(true)} />
+          <Navbar openResume={() => setIsResumeOpen(true)} theme={theme} toggleTheme={toggleTheme} />
           <div style={{ paddingTop: '70px' }}>
             <HeroSection openResume={() => setIsResumeOpen(true)} />
             <AboutSection />

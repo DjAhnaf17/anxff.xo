@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaLinkedin, FaGithub, FaWhatsapp, FaBars, FaTimes } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaWhatsapp, FaBars, FaTimes, FaSun, FaMoon } from "react-icons/fa";
 import Magnetic from "./Magnetic";
 interface NavbarProps {
   openResume: () => void;
+  theme: string;
+  toggleTheme: () => void;
 }
 
-const Navbar = ({ openResume }: NavbarProps) => {
+const Navbar = ({ openResume, theme, toggleTheme }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // Close menu on resize to desktop
@@ -35,6 +37,7 @@ const Navbar = ({ openResume }: NavbarProps) => {
       <Magnetic><a href="https://www.linkedin.com/in/jawwad-ahnaf-998727387" target="_blank" rel="noreferrer" className="text-white fs-5 transition hover-gradient d-inline-block p-1"><FaLinkedin /></a></Magnetic>
       <Magnetic><a href="https://github.com/DjAhnaf17/" target="_blank" rel="noreferrer" className="text-white fs-5 transition hover-gradient d-inline-block p-1"><FaGithub /></a></Magnetic>
       <Magnetic><a href="https://wa.me/918870073991" target="_blank" rel="noreferrer" className="text-white fs-5 transition hover-gradient d-inline-block p-1"><FaWhatsapp /></a></Magnetic>
+      <Magnetic><button onClick={toggleTheme} className="btn text-white fs-5 transition hover-gradient p-1 border-0">{theme === 'dark' ? <FaSun /> : <FaMoon />}</button></Magnetic>
     </div>
   );
 
@@ -48,7 +51,7 @@ const Navbar = ({ openResume }: NavbarProps) => {
     >
       <div className="container py-2">
         <div className="d-flex w-100 justify-content-between align-items-center d-lg-none">
-          <span className="fw-bold fs-4 text-gradient" style={{fontFamily: 'Outfit'}}>Portfolio.</span>
+          <span className="fw-bold fs-4 text-gradient" style={{fontFamily: 'Outfit'}}>anxff.xo</span>
           <button 
             className="btn text-white p-0 border-0 fs-3" 
             onClick={() => setIsOpen(!isOpen)}
@@ -66,7 +69,7 @@ const Navbar = ({ openResume }: NavbarProps) => {
               </li>
             ))}
             <li className="nav-item">
-              <button onClick={openResume} className="btn nav-link p-0 text-coral">Resume</button>
+              <button onClick={openResume} className="btn nav-link p-0 text-neon">Resume</button>
             </li>
             <li className="nav-item">
               {socialLinks}

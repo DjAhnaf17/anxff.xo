@@ -12,20 +12,22 @@ const ContactSection = () => {
     setStatus("loading");
     
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      });
-      
-      if (res.ok) {
-        setStatus("success");
-        setFormData({ name: "", email: "", message: "" });
-        // Reset after 5 seconds
-        setTimeout(() => setStatus("idle"), 5000);
-      } else {
+      // Validate form data
+      if (!formData.name || !formData.email || !formData.message) {
         setStatus("error");
+        return;
       }
+      
+      // Send email directly
+      const mailtoLink = `mailto:jawwadahnaf04@gmail.com?subject=New Contact from ${formData.name}&body=Name: ${formData.name}%0AEmail: ${formData.email}%0AMessage: ${formData.message}`;
+      window.location.href = mailtoLink;
+      
+      // Show success message
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+      
+      // Reset after 5 seconds
+      setTimeout(() => setStatus("idle"), 5000);
     } catch (error) {
       console.error(error);
       setStatus("error");
@@ -42,7 +44,7 @@ const ContactSection = () => {
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
-    show: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 100 } }
+    show: { y: 0, opacity: 1, transition: { type: "spring" as const, stiffness: 100 } }
   };
 
   return (
@@ -69,38 +71,38 @@ const ContactSection = () => {
           >
             <motion.h2 variants={itemVariants} className="display-4 fw-bold mb-4">
               Let's build something <br/> 
-              <span className="text-coral" style={{ textShadow: "0 0 15px rgba(255,127,80,0.4)" }}>extraordinary</span> together.
+              <span className="text-neon" style={{ textShadow: "0 0 15px rgba(255,127,80,0.4)" }}>extraordinary</span> together.
             </motion.h2>
             <motion.p variants={itemVariants} className="text-muted fs-5 mb-5">
               Whether you have a dataset waiting to be unlocked, a production machine learning pipeline to architect, or just want to say hi—I'm all ears.
             </motion.p>
             
             <motion.div variants={itemVariants} className="d-flex align-items-center gap-3 mb-4">
-              <div className="rounded-circle bg-dark d-flex align-items-center justify-content-center border border-secondary" style={{ width: "50px", height: "50px" }}>
+              <div className="rounded-circle bg-adaptive d-flex align-items-center justify-content-center border border-secondary" style={{ width: "50px", height: "50px" }}>
                 <FaEnvelope className="text-info fs-4" />
               </div>
               <div>
-                <h5 className="mb-0 text-white">Email</h5>
+                <h5 className="mb-0 text-adaptive">Email</h5>
                 <a href="mailto:jawwadahnaf04@gmail.com" className="text-muted text-decoration-none">jawwadahnaf04@gmail.com</a>
               </div>
             </motion.div>
             
             <motion.div variants={itemVariants} className="d-flex align-items-center gap-3 mb-4">
-              <div className="rounded-circle bg-dark d-flex align-items-center justify-content-center border border-secondary" style={{ width: "50px", height: "50px" }}>
+              <div className="rounded-circle bg-adaptive d-flex align-items-center justify-content-center border border-secondary" style={{ width: "50px", height: "50px" }}>
                 <FaPhone className="text-success fs-4" />
               </div>
               <div>
-                <h5 className="mb-0 text-white">Phone</h5>
+                <h5 className="mb-0 text-adaptive">Phone</h5>
                 <a href="tel:+918870073991" className="text-muted text-decoration-none">+91 8870073991</a>
               </div>
             </motion.div>
 
             <motion.div variants={itemVariants} className="d-flex align-items-center gap-3">
-              <div className="rounded-circle bg-dark d-flex align-items-center justify-content-center border border-secondary" style={{ width: "50px", height: "50px" }}>
-                <FaMapMarkerAlt className="text-coral fs-4" />
+              <div className="rounded-circle bg-adaptive d-flex align-items-center justify-content-center border border-secondary" style={{ width: "50px", height: "50px" }}>
+                <FaMapMarkerAlt className="text-neon fs-4" />
               </div>
               <div>
-                <h5 className="mb-0 text-white">Location</h5>
+                <h5 className="mb-0 text-adaptive">Location</h5>
                 <span className="text-muted">Global / India</span>
               </div>
             </motion.div>
@@ -112,7 +114,7 @@ const ContactSection = () => {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, type: "spring", stiffness: 80 }}
+              transition={{ duration: 0.8, type: "spring" as const, stiffness: 80 }}
               className="glassmorphism p-4 p-md-5 position-relative"
               style={{ borderRadius: "20px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)" }}
             >
@@ -195,7 +197,7 @@ const ContactSection = () => {
                           type="submit" 
                           className="btn text-white fw-bold py-3 px-5 d-flex align-items-center gap-2 border-0 shadow-lg"
                           disabled={status === "loading"}
-                          style={{ borderRadius: "50px", backgroundColor: "var(--accent-coral)", transition: "all 0.3s ease" }}
+                          style={{ borderRadius: "50px", backgroundColor: "var(--accent-neon)", transition: "all 0.3s ease" }}
                         >
                           {status === "loading" ? (
                             <><span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending Orbit...</>

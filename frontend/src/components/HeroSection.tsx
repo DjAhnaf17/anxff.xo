@@ -4,6 +4,7 @@ import { loadFull } from "tsparticles";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { FaChevronRight } from "react-icons/fa";
 import Magnetic from "./Magnetic";
+import Hero3DModel from "./Hero3DModel";
 
 interface HeroProps {
   openResume: () => void;
@@ -72,7 +73,7 @@ const HeroSection = ({ openResume }: HeroProps) => {
             modes: { repulse: { distance: 100, duration: 0.4 } },
           },
           particles: {
-            color: { value: ["#FF7F50", "#00FFFF", "#8A2BE2", "#FFFFFF"] },
+            color: { value: ["#39FF14", "#00FFFF", "#8A2BE2", "#FFFFFF"] },
             links: { enable: false },
             move: {
               enable: true,
@@ -101,13 +102,13 @@ const HeroSection = ({ openResume }: HeroProps) => {
           style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
         >
           <div style={{ transform: "translateZ(50px)" }}>
-            <p className="text-coral fw-bold text-uppercase mb-3" style={{ letterSpacing: "3px" }}>The Solution You Need</p>
+            <p className="text-neon fw-bold text-uppercase mb-3" style={{ letterSpacing: "3px" }}>The Solution You Need</p>
             
             <motion.div 
               variants={staggerContainer}
               initial="hidden"
               animate="show"
-              className="display-1 fw-bold mb-4" 
+              className="hero-title fw-bold mb-4" 
               style={{ lineHeight: 1.1, textShadow: "0px 10px 30px rgba(0,0,0,0.5)", perspective: 800 }}
             >
               <div className="d-inline-flex flex-wrap justify-content-center gap-3">
@@ -115,16 +116,22 @@ const HeroSection = ({ openResume }: HeroProps) => {
               </div>
               <br />
               <div className="d-inline-flex flex-wrap justify-content-center gap-3 mt-2">
-                <motion.span variants={wordAnim} className="text-coral" style={{ textShadow: "0 0 20px rgba(255,127,80,0.4)", transformOrigin: "bottom center", display: "inline-block" }}>Intelligent</motion.span> 
+                <motion.span variants={wordAnim} className="text-neon" style={{ textShadow: "0 0 20px rgba(57,255,20,0.4)", transformOrigin: "bottom center", display: "inline-block" }}>Intelligent</motion.span> 
                 <motion.span variants={wordAnim} style={{ transformOrigin: "bottom center", display: "inline-block" }}>Systems</motion.span>
               </div>
             </motion.div>
 
             <p className="fs-5 text-gray mb-5 mx-auto" style={{ maxWidth: "700px" }}>
-              I am Jawwad Ahnaf, a Full-Stack Data Analyst & ML Developer translating complex data into actionable digital experiences. Architecting pipelines, building production models, and crafting premium UI/UX.
+              I am Ahnaf, a Full-Stack Data Analyst & ML Developer translating complex data into actionable digital experiences. Architecting pipelines, building production models, and crafting premium UI/UX.
             </p>
             
-            <div className="d-flex justify-content-center gap-4 align-items-center">
+            <div className="row align-items-center mb-5">
+              <div className="col-lg-6 mx-auto">
+                <Hero3DModel />
+              </div>
+            </div>
+
+            <div className="d-flex flex-wrap justify-content-center gap-3 align-items-center">
               <Magnetic>
                 <a href="#contact" className="text-decoration-none d-inline-block">
                   <button className="btn-pill-white" style={{ position: "relative", zIndex: 10 }}>
@@ -134,13 +141,13 @@ const HeroSection = ({ openResume }: HeroProps) => {
               </Magnetic>
               <Magnetic>
                 <a href="#projects" className="text-decoration-none d-inline-block">
-                  <button className="btn-pill-white" style={{ background: "transparent", border: "2px solid #ffffff", color: "rgba(255, 255, 255, 0.7)", position: "relative", zIndex: 10 }}>
+                  <button className="btn-pill-white" style={{ position: "relative", zIndex: 10 }}>
                     View Projects
                   </button>
                 </a>
               </Magnetic>
               <Magnetic>
-                <button onClick={openResume} className="btn-pill-white border-0 text-coral" style={{ background: "transparent", position: "relative", zIndex: 10 }}>
+                <button onClick={openResume} className="btn-pill-white border-0" style={{ position: "relative", zIndex: 10 }}>
                   View Resume
                 </button>
               </Magnetic>

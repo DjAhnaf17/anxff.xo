@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Magnetic from "./Magnetic";
 
 interface Project {
@@ -11,26 +11,37 @@ interface Project {
   url: string;
   liveUrl?: string; // Optional field for live demo link
   image?: string;   // Optional field for hero image
+  hideLiveDemo?: boolean; // Flag to hide live demo button
 }
 
 const ProjectsSection = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [projects] = useState<Project[]>([
+    {
+      id: 1,
+      title: "Med-Predict — ML-Powered Disease Detection System",
+      description: "An intelligent healthcare support application designed to assist in early disease detection using machine learning. It features a responsive UI and automatically generates medical PDF reports.",
+      technologies: ["Python", "Streamlit", "Machine Learning", "Scikit-learn"],
+      url: "https://github.com/DjAhnaf17/Med-Predict",
+      hideLiveDemo: true
+    },
+    {
+      id: 2,
+      title: "PlotPlus — ML Property Price Predictor",
+      description: "A full-stack web application built using Flask, Machine Learning, and PostgreSQL, designed to predict property prices based on area, number of rooms, and location.",
+      technologies: ["Python", "Flask", "PostgreSQL", "Machine Learning", "HTML/CSS/JS"],
+      url: "https://github.com/DjAhnaf17/PlotPlus",
+      liveUrl: "https://plotplus.onrender.com/"
+    },
+    {
+      id: 3,
+      title: "Royal Suppliers Web Platform",
+      description: "A modern, responsive web application built for Royal Suppliers to manage operations and provide an excellent user experience.",
+      technologies: ["React", "TypeScript", "Node.js", "TailwindCSS"],
+      url: "https://github.com/DjAhnaf17/RoyalSuppliersNewWeb",
+      liveUrl: "https://royalsuppliersvnb.in/"
+    }
+  ]);
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    // Fetch projects from Flask backend
-    fetch("http://127.0.0.1:5000/api/projects")
-      .then((res) => res.json())
-      .then((data) => {
-        setProjects(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Failed to fetch projects:", err);
-        setLoading(false);
-      });
-  }, []);
 
   // Automatic carousel delay
   useEffect(() => {
@@ -62,9 +73,7 @@ const ProjectsSection = () => {
       <div className="container py-5 overflow-hidden">
         <h2 className="display-4 fw-bold text-center mb-5">My <span className="text-gradient">Projects</span></h2>
         
-        {loading ? (
-          <div className="text-center"><div className="spinner-border text-info" role="status"></div></div>
-        ) : projects.length > 0 ? (
+        {projects.length > 0 ? (
           <div className="position-relative mx-auto mt-4" style={{ maxWidth: "800px" }}>
             <AnimatePresence mode="wait">
               <motion.div
@@ -100,7 +109,7 @@ const ProjectsSection = () => {
                   )}
 
                   {/* Project Content */}
-                  <div className="p-4 p-md-5 d-flex flex-column flex-grow-1" style={{ position: "relative", zIndex: 1 }}>
+                  <div className="p-3 p-md-5 d-flex flex-column flex-grow-1" style={{ position: "relative", zIndex: 1 }}>
                     <h4 className="fw-bold mb-3">{projects[currentIndex].title}</h4>
                     <p className="text-muted flex-grow-1 fs-5">{projects[currentIndex].description}</p>
                     
@@ -110,19 +119,15 @@ const ProjectsSection = () => {
                       ))}
                     </div>
                     
-                    {/* Dual Action Buttons */}
-                    <div className="d-flex gap-3 justify-content-between mt-auto pt-4 border-top border-secondary border-opacity-50">
-                      <Magnetic>
-                        <a href={projects[currentIndex].url} target="_blank" rel="noreferrer" className="btn btn-outline-light d-flex align-items-center gap-2 px-4 shadow-sm" style={{ borderRadius: "30px", backdropFilter: "blur(5px)" }}>
-                          <FaGithub /> GitHub
-                        </a>
-                      </Magnetic>
-                      
-                      <Magnetic>
-                        <a href={projects[currentIndex].liveUrl || projects[currentIndex].url} target="_blank" rel="noreferrer" className="btn border-0 text-white d-flex align-items-center gap-2 px-4 shadow-lg transition" style={{ borderRadius: "30px", backgroundColor: "var(--accent-coral)" }}>
-                          Live Demo <FaExternalLinkAlt size={14} />
-                        </a>
-                      </Magnetic>
+                    {/* Action Button */}
+                    <div className="d-flex flex-wrap gap-3 justify-content-center mt-auto pt-4 border-top border-secondary border-opacity-50">
+                      {!projects[currentIndex].hideLiveDemo && (
+                        <Magnetic>
+                          <a href={projects[currentIndex].liveUrl || projects[currentIndex].url} target="_blank" rel="noreferrer" className="btn border-0 text-white d-flex align-items-center gap-2 px-4 shadow-lg transition" style={{ borderRadius: "30px", backgroundColor: "var(--accent-neon)" }}>
+                            Live Demo <FaExternalLinkAlt size={14} />
+                          </a>
+                        </Magnetic>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -149,7 +154,7 @@ const ProjectsSection = () => {
                       width: currentIndex === i ? "30px" : "10px",
                       height: "10px",
                       borderRadius: "10px",
-                      backgroundColor: currentIndex === i ? "var(--accent-coral)" : "rgba(255,255,255,0.3)",
+                      backgroundColor: currentIndex === i ? "var(--accent-neon)" : "rgba(255,255,255,0.3)",
                       transition: "all 0.3s ease"
                     }}
                     aria-label={`Go to project ${i + 1}`}
